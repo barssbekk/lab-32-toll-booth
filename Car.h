@@ -31,7 +31,7 @@ public:
     void setYear(int yr)      { year = yr; }
     void setTransponder(int t) { transponder = t; }
 
-    void print() {
+    void print() const {
         cout << "[" << year << " " << make << " (" << transponder << ")]\n";
     }
 
