@@ -20,15 +20,26 @@ int main() {
     for (auto& cars : line)
         cars.print();
 
+    int numOperation = 1;
+    do {
+        cout << "\nTime: " << numOperation << " Operation: ";
+        int probability = rand() % 100;
+        if (probability < 55) {
+            cout << "Car paid: ";
+            line.front().print();
+            line.pop_front();
+        } else if (probability > 55) {
+            cout << "Joined lane: ";
+            Car joinedCar;
+            line.push_back(joinedCar);
+            line.back().print();
+        }
+        ++numOperation;
+    } while (!line.empty() && numOperation <= 6);
+
     return 0;
 }
 
-
-// int numOperation = 1;
-// do {
-//     cout << "Time: " << numOperation << " Operation: ";
-//     int probability = rand() % 100;
-//     if (probability < 55) {
-//
-//     }
-// } while (!line.empty());
+void printQueue(deque<Car> queue) {
+    for (auto& )
+}
