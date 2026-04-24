@@ -8,7 +8,8 @@ using namespace std;
 const int NUM_CAR = 2;
 
 int main() {
-    deque<Car> cars;
+    deque<Car> line;
+    for (int i = 0; i < NUM_CAR; ++i) // Initial val
 
     cout << "Initial queue:\n";
 
