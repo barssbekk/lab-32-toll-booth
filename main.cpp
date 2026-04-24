@@ -8,6 +8,8 @@ using namespace std;
 const int NUM_CAR = 2;
 const int PROB_PRCNT = 100;
 
+void printQueue(const deque<Car>& queue);
+
 int main() {
     srand(time(nullptr));
     deque<Car> line;
@@ -25,21 +27,30 @@ int main() {
         cout << "\nTime: " << numOperation << " Operation: ";
         int probability = rand() % 100;
         if (probability < 55) {
-            cout << "Car paid: ";
-            line.front().print();
-            line.pop_front();
-        } else if (probability > 55) {
+            if (!line.empty()) {
+                cout << "Car paid: ";
+                line.front().print();
+                line.pop_front();
+            } else {
+                cout << "Empty";
+            }
+            printQueue(line);
+        } else {
             cout << "Joined lane: ";
             Car joinedCar;
             line.push_back(joinedCar);
             line.back().print();
+            printQueue(line);
         }
         ++numOperation;
-    } while (!line.empty() && numOperation <= 6);
-
+        if (line.empty())
+            cout << "Empty\n";
+    } while (!line.empty());
     return 0;
 }
 
-void printQueue(deque<Car> queue) {
-    for (auto& )
+void printQueue(const deque<Car>& queue) {
+    cout << "Queue:\n";
+    for (auto& fullQueue : queue)
+        fullQueue.print();
 }
