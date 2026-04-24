@@ -20,12 +20,15 @@ int main() {
     for (auto& cars : line)
         cars.print();
 
-
-    int numOperation = 1;
-    do {
-        cout << "Time: " << numOperation << " Operation: ";
-        int probability = rand() % 100;
-    } while (!line.empty());
-
     return 0;
 }
+
+
+// int numOperation = 1;
+// do {
+//     cout << "Time: " << numOperation << " Operation: ";
+//     int probability = rand() % 100;
+//     if (probability < 55) {
+//
+//     }
+// } while (!line.empty());
