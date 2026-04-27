@@ -7,6 +7,7 @@
 
 using namespace std;
 
+//
 const int NUM_CAR = 2;              // initial num of cars
 const int PROB_PRCNT = 100;         // probability range
 const int LEAVE_CHANCE = 55;        // chance car leaves
