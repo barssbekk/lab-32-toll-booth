@@ -10,7 +10,9 @@ using namespace std;
 
 const int NUM_CAR = 2;              // initial num of cars
 const int PROB_PRCNT = 100;         // probability range
-const int LEAVE_CHANCE = 55;        // chance car leaves
+const int LEAVE_CHANCE = 46;        // chance car leaves
+const int JOIN_CHANCE = 39;
+const int SHIFT_LANE_CHANCE = 15;
 const int MAX_TOLL_BOOTH = 4;       // max amount of toll both lan
 
 void printQueue(const deque<Car>& queue);
@@ -21,14 +23,12 @@ int main() {
     array<deque<Car>, MAX_TOLL_BOOTH> lanes; //
 
     // initialize queue
-    for (int i = 0; i < NUM_CAR; ++i) {
+    for (int i = 0; i < NUM_CAR; ++i) { // populate 2 cars as init
         Car car;
         line.push_back(car);
         Car initLanes;
         lanes.at(i).push_back(initLanes);
     }
-    cout << "\n--------TEST--0--\n";
-    lanes.at(0).front().print();
 
     cout << "Initial queue:\n";     // initial val cars
     for (auto& cars : line)
@@ -38,19 +38,21 @@ int main() {
     do {
         cout << "\nTime: " << numOperation << " Operation: ";
         int probability = rand() % PROB_PRCNT; // for prob
-        if (probability < LEAVE_CHANCE) {      // car leaves
+        if (probability > LEAVE_CHANCE) {      // car leaves // > 46
             if (!line.empty()) {
                 cout << "Car paid: ";
                 line.front().print();
                 line.pop_front();
             }
             printQueue(line);
-        } else {                               // car joins
+        } else if (probability < JOIN_CHANCE) {      // 39           // car joins
             cout << "Joined lane: ";
             Car joinedCar;
             line.push_back(joinedCar);
             line.back().print();
             printQueue(line);
+        } else if (probability > SHIFT_LANE_CHANCE) { // 15
+
         }
         ++numOperation;
         if (line.empty())
