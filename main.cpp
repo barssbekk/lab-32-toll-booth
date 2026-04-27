@@ -16,11 +16,11 @@ const int SHIFT_LANE_CHANCE = 15;
 const int MAX_TOLL_BOOTH = 4;       // max amount of toll both lan
 
 void printQueue(const deque<Car>& queue);
-void shiftLanes(deque<Car> line);
+void shiftLanes(deque<Car> carShift, array<deque<Car>, MAX_TOLL_BOOTH> lanes);
 
 int main() {
     srand(time(nullptr));
-    deque<Car> line;                // queue of cars
+    // deque<Car> line;                // queue of cars
     array<deque<Car>, MAX_TOLL_BOOTH> lanes; //
 
     // initialize queue
@@ -54,6 +54,7 @@ int main() {
             printQueue(line);
         } else if (probability > SHIFT_LANE_CHANCE) {  // FIXME: prob // 15
             // TODO: shift lanes (rear)
+            shiftLanes(line, lanes);
         }
         ++numOperation;
         if (line.empty())
@@ -69,6 +70,8 @@ void printQueue(const deque<Car>& queue) {
         fullQueue.print();
 }
 
-void shiftLanes(deque<Car> line) {
-    
+void shiftLanes(deque<Car> line, array<deque<Car>, MAX_TOLL_BOOTH> lanes) {
+    for (int i = 0; i < lanes.size(); ++i) {
+        lanes.at(i).push_back(line.back());
+    }
 }
