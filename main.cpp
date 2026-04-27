@@ -3,25 +3,28 @@
 #include <deque>
 #include <cstdlib>
 #include <ctime>
+#include <array>
 #include "Car.h"
 
 using namespace std;
 
-//
 const int NUM_CAR = 2;              // initial num of cars
 const int PROB_PRCNT = 100;         // probability range
 const int LEAVE_CHANCE = 55;        // chance car leaves
+const int MAX_TOLL_BOOTH = 4;       // max amount of toll both lan
 
 void printQueue(const deque<Car>& queue);
 
 int main() {
     srand(time(nullptr));
     deque<Car> line;                // queue of cars
+    array<deque<Car>, MAX_TOLL_BOOTH> lanes; //
 
     // initialize queue
     for (int i = 0; i < NUM_CAR; ++i) {
         Car car;
         line.push_back(car);
+
     }
 
     cout << "Initial queue:\n";     // initial val cars
