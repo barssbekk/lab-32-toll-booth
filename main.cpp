@@ -24,8 +24,11 @@ int main() {
     for (int i = 0; i < NUM_CAR; ++i) {
         Car car;
         line.push_back(car);
-
+        Car initLanes;
+        lanes.at(i).push_back(initLanes);
     }
+    cout << "\n--------TEST--0--\n";
+    lanes.at(0).front().print();
 
     cout << "Initial queue:\n";     // initial val cars
     for (auto& cars : line)
