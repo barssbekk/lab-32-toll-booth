@@ -16,6 +16,7 @@ const int SHIFT_LANE_CHANCE = 15;
 const int MAX_TOLL_BOOTH = 4;       // max amount of toll both lan
 
 void printQueue(const deque<Car>& queue);
+void shiftLanes(deque<Car> line);
 
 int main() {
     srand(time(nullptr));
@@ -26,8 +27,8 @@ int main() {
     for (int i = 0; i < NUM_CAR; ++i) { // populate 2 cars as init
         Car car;
         line.push_back(car);
-        Car initLanes;
-        lanes.at(i).push_back(initLanes);
+        //Car initLanes;
+        lanes.at(i).push_back(car);
     }
 
     cout << "Initial queue:\n";     // initial val cars
@@ -45,14 +46,14 @@ int main() {
                 line.pop_front();
             }
             printQueue(line);
-        } else if (probability < JOIN_CHANCE) {      // 39           // car joins
+        } else if (probability < JOIN_CHANCE) {    // FIXME: prob  // 39           // car joins
             cout << "Joined lane: ";
             Car joinedCar;
             line.push_back(joinedCar);
             line.back().print();
             printQueue(line);
-        } else if (probability > SHIFT_LANE_CHANCE) { // 15
-
+        } else if (probability > SHIFT_LANE_CHANCE) {  // FIXME: prob // 15
+            // TODO: shift lanes (rear)
         }
         ++numOperation;
         if (line.empty())
@@ -66,4 +67,8 @@ void printQueue(const deque<Car>& queue) {
     cout << "Queue:\n";
     for (auto& fullQueue : queue)
         fullQueue.print();
+}
+
+void shiftLanes(deque<Car> line) {
+    
 }
