@@ -20,18 +20,28 @@ void shiftLanes(deque<Car> carShift, array<deque<Car>, MAX_TOLL_BOOTH> lanes);
 
 int main() {
     srand(time(nullptr));
-    // deque<Car> line;                // queue of cars
-    array<deque<Car>, MAX_TOLL_BOOTH> lanes; //
+    deque<Car> line;                // queue of cars
 
     // initialize queue
-    for (int i = 0; i < NUM_CAR; ++i) { // populate 2 cars as init
+    for (int i = 0; i < NUM_CAR; ++i) {
         Car car;
         line.push_back(car);
-        //Car initLanes;
-        lanes.at(i).push_back(car);
     }
 
-    cout << "Initial queue:\n";     // initial val cars
+    array<deque<Car>, MAX_TOLL_BOOTH> lanes;
+    for (int i = 0; i < MAX_TOLL_BOOTH; i++) {
+        lanes.at(i).push_back(Car());
+    }
+    cout << " Milestone 2 \n";
+
+    for (int i = 0; i < MAX_TOLL_BOOTH; i++) {
+        cout << "Lane " << i + 1 << ":\n";
+        for (auto& car : lanes.at(i)) {
+            car.print();
+        }
+    }
+
+    cout << "\nInitial queue:\n";     // initial val cars
     for (auto& cars : line)
         cars.print();
 
@@ -39,22 +49,19 @@ int main() {
     do {
         cout << "\nTime: " << numOperation << " Operation: ";
         int probability = rand() % PROB_PRCNT; // for prob
-        if (probability > LEAVE_CHANCE) {      // car leaves // > 46
+        if (probability < LEAVE_CHANCE) {      // car leaves //
             if (!line.empty()) {
                 cout << "Car paid: ";
                 line.front().print();
                 line.pop_front();
             }
             printQueue(line);
-        } else if (probability < JOIN_CHANCE) {    // FIXME: prob  // 39           // car joins
+        } else {    // FIXME: prob  // 39           // car joins
             cout << "Joined lane: ";
             Car joinedCar;
             line.push_back(joinedCar);
             line.back().print();
             printQueue(line);
-        } else if (probability > SHIFT_LANE_CHANCE) {  // FIXME: prob // 15
-            // TODO: shift lanes (rear)
-            shiftLanes(line, lanes);
         }
         ++numOperation;
         if (line.empty())
@@ -70,8 +77,8 @@ void printQueue(const deque<Car>& queue) {
         fullQueue.print();
 }
 
-void shiftLanes(deque<Car> line, array<deque<Car>, MAX_TOLL_BOOTH> lanes) {
-    for (int i = 0; i < lanes.size(); ++i) {
-        lanes.at(i).push_back(line.back());
-    }
-}
+// void shiftLanes(deque<Car> line, array<deque<Car>, MAX_TOLL_BOOTH> lanes) {
+//     for (int i = 0; i < lanes.size(); ++i) {
+//         lanes.at(i).push_back(line.back());
+//     }
+// }
