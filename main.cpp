@@ -30,9 +30,10 @@ int main() {
 
     array<deque<Car>, MAX_TOLL_BOOTH> lanes;
     for (int i = 0; i < MAX_TOLL_BOOTH; i++) {
-        lanes.at(i).push_back(Car());
+        for (int j = 0; j < NUM_CAR; j++) {
+            lanes.at(i).push_back(Car());
+        }
     }
-    cout << " Milestone 2 \n";
 
     for (int i = 0; i < MAX_TOLL_BOOTH; i++) {
         cout << "Lane " << i + 1 << ":\n";
